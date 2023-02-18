@@ -20,3 +20,8 @@
   border-radius: 10px;
   background-color: var(--secondary-color);
 }
+
+.editWindow {
+  position: absolute;
+  top: 20px;
+}

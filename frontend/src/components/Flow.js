@@ -17,7 +17,7 @@ const initialNodes = [
     {
         id: '1',
         position: { x: 0, y: 0 },
-        data: { label: 'Hello' },
+        data: { label: 'Hello', description: 'some description'},
         type: 'input',
     },
     {
@@ -62,12 +62,12 @@ function handleResetViewPort(reactFlowInstance){
     })
 }
 
-function DisplayWindowOnChange() {
+function DisplayWindowOnSelect(setSelectedNodes) {
     useOnSelectionChange({
-        onChange: ({ nodes, edges }) => console.log('changed selection', nodes, edges),
+        onChange: ({ nodes, _ }) => {
+            setSelectedNodes([...nodes]);
+        },
     });
-  
-    return null;
 }
 
 function Flow() {
@@ -77,6 +77,7 @@ function Flow() {
     // state for edges and nodes
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
+    const [selectedNodes, setSelectedNodes] = useState([]); // no selected nodes initially
     
     // default functions for flow chart
     const onNodesChange = useCallback( (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),[] );
@@ -84,8 +85,9 @@ function Flow() {
     const onConnect = useCallback((params) => {
         setEdges((eds) => addEdge(params, eds))
     },[]);
-    
-    DisplayWindowOnChange();
+
+    // display edit windows if node is selected
+    DisplayWindowOnSelect(setSelectedNodes);
     return (
     <>
         {/* setting up flow chart */}
@@ -100,15 +102,19 @@ function Flow() {
             <Background />
             <Controls />
             </ReactFlow>
+
+            { selectedNodes.map((nd) => <div key={nd.id} class='editWindow'> {nd.data.label ?? ''}  </div>) }
         </div>
 
-        {/* bar for editting nodes */}
+        {/* bar for editing nodes */}
         <DocumentEditBar>
             <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
             <DocumentEditButton label='save project'/>
             <DocumentEditButton label='import image'/>
             <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
         </DocumentEditBar>
+
+        {/* edit node windows */}
     </>
     );
 }
