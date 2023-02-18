@@ -4,10 +4,11 @@ import ReactFlow, {
     applyEdgeChanges,
     applyNodeChanges,
     addEdge,
+    useReactFlow,
 } from 'reactflow';
 import { useState, useCallback } from 'react';
-import 'reactflow/dist/style.css';
 
+//WIP should be fetched from the backend
 const initialNodes = [
     {
         id: '1',
@@ -25,9 +26,9 @@ const initialNodes = [
         position: {x: 200, y: 200},
         data: {label: "I'm a genius!"},
     },
-];
-
-const initialEdges = [
+  ];
+  
+  const initialEdges = [
     {
         id: '1-2',
         source: '1',
@@ -35,9 +36,15 @@ const initialEdges = [
         label: 'to the',
         type: 'step',
     }
-];
+  ];
 
-function Flow() {
+
+function Flow({initialEdges, initialNodes}) {
+
+    //setting up reactflow
+    const reactFlowInstance = useReactFlow();
+    console.log(reactFlowInstance.getEdges());
+
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
 
@@ -48,19 +55,22 @@ function Flow() {
     },[]);
 
     return (
-    <div style={{ height: '100%' }}>
-        <ReactFlow
-            nodes={nodes}
-            edges = {edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            // i found it bois onInit
-        >
-        <Background />
-        <Controls />
-        </ReactFlow>
-    </div>
+    <>
+        <div className='nodeEditBar'>something</div>
+        <div style={{ height: '100%' }}>
+            <ReactFlow
+                nodes={initialNodes}
+                edges = {initialEdges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                // i found it bois onInit
+            >
+            <Background />
+            <Controls />
+            </ReactFlow>
+        </div>
+    </>
     );
 }
 

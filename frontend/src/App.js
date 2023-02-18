@@ -1,12 +1,15 @@
 import './App.css';
 import logo from './logo.svg';
-import Flow from './Flow';
-
+import FlowWithProvider from './components/FlowWithProvider';
+import 'reactflow/dist/style.css';
 
 function App() {
+
   return (
     <div style={{height:"100vh"}}>
-      <Flow/>
+      <div style={{height: '100%'}}>
+        <FlowWithProvider/>
+      </div>
     </div>
   );
 }
