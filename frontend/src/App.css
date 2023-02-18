@@ -1,3 +1,7 @@
+:root {
+  --secondary-color: blue;
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -5,8 +9,14 @@
 }
 
 .nodeEditBar {
-  background-color: gray;
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-end;
   position: absolute;
-  top: 50px;
-  right: 70px;
+  top: 30px;
+  right: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
 }
