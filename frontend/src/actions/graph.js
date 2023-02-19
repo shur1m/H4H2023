@@ -1,6 +1,4 @@
-const getDirectory =async ()=>{
-    return await fetch('https://progressplantedbackend-production.up.railway.app/graphs/directory').then((res) => res.json())
-}
+
 const getGraph=async (title) =>{
     return await fetch('https://progressplantedbackend-production.up.railway.app/graphs/graph?' + new URLSearchParams({
         title: title,
@@ -43,7 +41,9 @@ const newGraph = async(title)=>{
             console.error('Error:', error);
         });
 }
-
+const getDirectory =async ()=>{
+    return await fetch('https://progressplantedbackend-production.up.railway.app/graphs/directory').then((res) => res.json())
+  }
 const delGraph=async (title) =>{
     return await fetch('https://progressplantedbackend-production.up.railway.app/graphs/delete?' + new URLSearchParams({
         title: title,
@@ -51,4 +51,4 @@ const delGraph=async (title) =>{
         .then(res=>res.text())
         .then (res=>console.log(res));
 }
-module.exports={getDirectory,getGraph,newGraph,saveGraph,delGraph};
+export{getGraph,newGraph,saveGraph,delGraph,getDirectory};

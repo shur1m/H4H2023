@@ -1,6 +1,4 @@
-const getUserDirectory =async (uid)=>{
-    return await fetch(`https://progressplantedbackend-production.up.railway.app/users/directory?uid=${uid}`).then((res) => res.json())
-}
+
 const shareGraph = async(title,uid)=> {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -18,11 +16,15 @@ const shareGraph = async(title,uid)=> {
             console.error('Error:', error);
         });
 }
+const getUserDirectory =async (uid)=>{
+    return await fetch(`https://progressplantedbackend-production.up.railway.app/users/directory?uid=${uid}`).then((res) => res.json())
+  }
+
 const newUser = async(uid)=>{
 
     const headers=new Headers();
     headers.append("Content-Type", "application/json");
-
+  
     await fetch('https://progressplantedbackend-production.up.railway.app/users/newuser', {
         method: 'POST',
         headers:headers,
@@ -35,6 +37,6 @@ const newUser = async(uid)=>{
         .catch((error) => {
             console.error('Error:', error);
         });
-}
+  }
 
-module.exports={newUser,shareGraph,getUserDirectory};
+export {shareGraph,getUserDirectory,newUser};

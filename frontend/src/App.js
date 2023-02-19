@@ -34,6 +34,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
+
+
+
 function App() {
   const [photo,setPhoto]=useState("");
 
