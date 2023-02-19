@@ -1,13 +1,15 @@
 const express = require('express');
 
-const cors = require("cors");
+
+const cors =require("cors");
 const app = express();
 
-const port = process.env.PORT || 8080;
-const bodyParser = require('body-parser');
-
 // Growth Graph
-const graphs = require("./routes/growthgraph");
+const graphs =require("./routes/growthgraph");
+const users =require("./routes/users");
+const port = process.env.PORT || 8080;
+const bodyParser =require('body-parser');
+
 
 app.use(bodyParser.json());
 app.use(cors({
@@ -16,6 +18,8 @@ app.use(cors({
 }));
 
 app.use('/graphs', graphs);
+app.use('/users', users);
+
 
 app.get("/", (req, res) => {
     res.send("Testing JavaScript!");

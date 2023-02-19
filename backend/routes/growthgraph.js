@@ -1,10 +1,16 @@
-const firebase = require("firebase-admin");
+
+//firebase stuff
+const firebase=require("firebase-admin");
 const admin = require("../firebase");
  
-const express = require("express");
+
+//server stuff
+const express=require("express");
+
 
 const router = express.Router();
 const db = admin.database();
+
 
 /**
  * GET GRAPH gets graph
@@ -13,6 +19,7 @@ const db = admin.database();
  * @param {str}  title title of  graph.
  * @return {object} object of the graph.
  */
+
 router.get("/graph", (req, res)=>{
     let title =req.query.title;
     const ref = db.ref(`graphs/${title}`);
@@ -48,6 +55,7 @@ router.get("/directory",(req, res)=>{
  * @param {str}  title title of new graph.
  * @return {JSONObject} object of all the types of usage.
  */
+
 router.post("/newdoc", (req, res)=>{
     let title = req.body.title;
     let ref = db.ref(`graphs/${title}`);
@@ -56,6 +64,7 @@ router.post("/newdoc", (req, res)=>{
             res.status(200).json({error: "file exists"})
         }
         else {
+
             db.ref('graphs').update({[title]: {title:title}});
             res.status(200).json("Received");
         }
@@ -70,6 +79,7 @@ router.post("/newdoc", (req, res)=>{
  * @param {obj}  title  which graph to update.
  * @return {obj} object of all the types of usage.
  */
+
 router.post("/update", (req, res)=>{
     const ref = db.ref(`graphs/${req.body.title}`);
     ref.update(req.body);
@@ -78,10 +88,13 @@ router.post("/update", (req, res)=>{
 
 router.delete("/delete", (req, res)=>{
     let title = req.query.title;
-    const ref = db.ref(`graphs/${req.body.title}`);
-    ref.remove()
-        .then(()=>res.status(200).json("Received"));
+    const ref = db.ref(`graphs/${title}`);
+    ref.remove().then((resp)=>res.status(200).json("Received"))
+    .catch(function(error) {
+        console.log("Remove failed: " + error.message)
+    });
     
 })
 
 module.exports = router;
+
