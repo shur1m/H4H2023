@@ -8,16 +8,16 @@ import {useEffect,useState } from 'react'
 import {getDirectory} from './actions/graph';
 
 function App() {
-  const [docTitle,setDocTitle] =useState('');
-  const [directory,setDirectory]=useState([]);
+  const [docTitle, setDocTitle] =useState('');
+  const [directory, setDirectory]=useState([]);
+
   useEffect(() => {
     getDirectory().then(res=>setDirectory(res));//gets the directory
   }, [docTitle])
+  
   return (
-    
-
     <div style={{height:"100vh"}} id="outer-container">
-      <Navbar/>
+      <Navbar docTitle={docTitle}/>
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       <div style={{height: '100%'}} id="page-wrap">
         <FlowWithProvider docTitle={docTitle}/>

@@ -21,7 +21,17 @@ const initialNodes = [
     {
         id: '1',
         position: { x: 200, y: 200 },
-        data: { label: 'Hello', description: 'some description'},
+        data: {
+            label: 'Hello',
+            description: 'some description',
+            progressBars: [
+                {
+                    completed: 3,
+                    total: 10,
+                    label: 'finish the ui'
+                }
+            ]
+        },
         type: 'goalNode',
     },
     {
@@ -77,13 +87,46 @@ function handleResetViewPort(reactFlowInstance){
     })
 }
 
-function DisplayWindowOnSelect(setSelectedNodes) {
+function handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges){
+    let newNodes = [];
+    for (let node of nodes){
+        let insert = true;
+        for (let selectedNode of selectedNodes){
+            if (selectedNode.id === node.id)
+                insert = false;
+
+            }
+        if (insert)
+                newNodes.push(node);
+    }
+
+    let newEdges = [];
+    for (let edge of edges){
+        let insert = true;
+        for (let selectedEdge of selectedEdges){
+            if (selectedEdge.id === edge.id)
+                insert = false;
+
+            }
+        if (insert)
+            newEdges.push(edge);
+    }
+
+
+    setNodes(newNodes);
+    setEdges(newEdges);
+}
+
+function DisplayWindowOnSelect(setSelectedNodes, setSelectedEdges) {
     useOnSelectionChange({
-        onChange: ({ nodes, _ }) => {
+        onChange: ({ nodes, edges }) => {
             setSelectedNodes([...nodes]);
+            setSelectedEdges([...edges]);
         },
     });
 }
+
+
 
 function Flow(props) {
     // setting up reactflow
@@ -94,7 +137,8 @@ function Flow(props) {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
     const [selectedNodes, setSelectedNodes] = useState([]); // no selected nodes initially
-    
+    const [selectedEdges, setSelectedEdges] = useState([]);
+
     // default functions for flow chart
     const onNodesChange = useCallback( (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),[] );
     const onEdgesChange = useCallback( (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),[] );
@@ -113,7 +157,7 @@ function Flow(props) {
     
 
     // display edit windows if node is selected
-    DisplayWindowOnSelect(setSelectedNodes);
+    DisplayWindowOnSelect(setSelectedNodes, setSelectedEdges);
     return (
     <>
         {/* setting up flow chart */}
@@ -139,8 +183,9 @@ function Flow(props) {
                 <DocumentEditButton label='save project'/>
                 <DocumentEditButton label='import image'/>
                 <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
+                <DocumentEditButton label='delete' onClick={() => handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges)}/>
             </DocumentEditBar>
-            { selectedNodes.map((nd) => <DocumentEditWindow key={nd.id} node = {nd}/>) }
+            { selectedNodes.map((nd) => <DocumentEditWindow key={nd.id} nodeId = {nd.id} nodes = {nodes} setNodes = {setNodes}/>) }
         </div>
     </>
     );

@@ -1,5 +1,6 @@
 :root {
   --secondary-color: blue;
+  --progress-bar-radius: 14px;
 }
 
 .App {
@@ -30,13 +31,43 @@
 }
 
 .editWindow {
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-content: flex-start;
+  align-items: flex-start;
   padding: 10px;
   margin: 10px;
   background-color: coral;
+}
+
+.editWindowButton {
+  right: 10px;
+  align-self: flex-end;
+  width: 20%;
+}
+
+.progressBar {
+  height: 24px;
+  align-self: center;
+}
+
+.progressBar.background{
+  width: 100%;
+  background-color: gray;
+  border-radius: var(--progress-bar-radius);
+}
+
+.progressBar.foreground{
+  background-color: green;
+  border-radius: var(--progress-bar-radius);
+}
+
+.progressBarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 /* custom reactflow css */
