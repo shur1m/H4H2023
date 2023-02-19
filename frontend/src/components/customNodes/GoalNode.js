@@ -1,7 +1,9 @@
 import React, { memo } from 'react';
 import { Handle, Position } from 'reactflow';
+import IconDisplay from '../IconDisplay';
 
 export default memo(({data, isConnectable, selected}) => {
+    let iconName = data.iconName ?? '';
     let nodeClassname = 'goalNode';
     if (selected) nodeClassname += ' selected';
     return (
@@ -13,8 +15,17 @@ export default memo(({data, isConnectable, selected}) => {
             />
 
             <div className={nodeClassname}>
-                { data.label }
-            </div>
+                
+                { iconName === '' ?
+                    <div className='nodeLabel' style={{color: 'black'}}> { data.label } </div>
+                :
+                    <>
+                        <IconDisplay name={iconName}/>
+                        <div className='nodeLabel' style= {{ position:'absolute', top: '118px'}}> { data.label } </div>
+
+                    </>
+                }
+                            </div>
 
             <Handle
             type="target"

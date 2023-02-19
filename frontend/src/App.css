@@ -23,6 +23,7 @@
   border-radius: 10px;
 
 }
+
 .nodeEditBar {
   display:flex;
   flex-direction: row;
@@ -68,6 +69,13 @@
 }
 .documentEditButton:hover {
   color:#757575;
+}
+
+.nodeImage {
+  align-self: center;
+  padding-bottom: 20px;
+  width: 90%;
+  
 }
 
 
@@ -116,9 +124,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  fontweight: 600;
+  font-weight: 600;
   font-size: x-large;
+  text-align: center;
 }
+
 .goalNode:hover{
   border-radius: x-large;
 }
@@ -126,6 +136,11 @@
 .goalNode.selected {
   border-color: #77C37E;
 }
+
+.nodeLabel {
+  color: #77C37E;
+}
+
 .login-with-google-btn {
        
   position: absolute;
@@ -175,6 +190,4 @@
   background-color: white;
   background-repeat: no-repeat;
   background-position: 12px 11px;
-  
-  
 }

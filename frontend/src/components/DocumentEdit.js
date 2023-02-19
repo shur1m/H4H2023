@@ -78,13 +78,14 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
     //contains the name, description, and progress of the goal
     return (
         <div key={node.id} className='editWindow'>
-            { node.imageLink === undefined ? null : <img src={node.imageLink} alt={node.imageLink} /> }
+            { node.imageLink === undefined ? null : <img className='nodeImage' src={node.imageLink} alt={node.imageLink} /> }
 
             <div className='editWindowButton' onClick={() => setIsEditable(!isEditable)}> {isEditable ? <EditOffIcon/> : <EditIcon/>} </div>
              {isEditable ?
                 <form>
                     <p><input name="label" value={node.data.label} placeholder="Title" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}/></p>
                     <p><textarea name="description" placeholder='Description' value={node.data.description} cols="30" rows="4" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}></textarea></p>
+                    <p><input name="iconName" placeholder='Choose Icon' onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}></input></p>
                     
                     {/* adding progress bars */}
                     <p><input value={newPb.label} placeholder='Task Name' onChange={(e) => setNewPb({...newPb, label: e.target.value })}/></p>
