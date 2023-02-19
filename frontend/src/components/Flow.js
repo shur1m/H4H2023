@@ -1,34 +1,38 @@
 import ReactFlow, {
     Controls,
-    Background,
     applyEdgeChanges,
     applyNodeChanges,
     addEdge,
     useReactFlow,
-    useOnSelectionChange
+    useOnSelectionChange,
+    StepEdge
 } from 'reactflow';
 
 import { useState, useCallback } from 'react';
 import {DocumentEditBar, DocumentEditButton} from './DocumentEdit';
+import GoalNode from './customNodes/GoalNode';
+
 
 //WIP should be fetched from the backend
 let unusedId = 0;
 const initialNodes = [
     {
         id: '1',
-        position: { x: 0, y: 0 },
+        position: { x: 200, y: 200 },
         data: { label: 'Hello', description: 'some description'},
-        type: 'input',
+        type: 'goalNode',
     },
     {
         id: '2',
         position: { x: 100, y: 100 },
         data: { label: 'World' },
+        type: 'goalNode',
     },
     {
         id: '3',
-        position: {x: 200, y: 200},
+        position: {x: 0, y: 0},
         data: {label: "I'm a genius!"},
+        type: 'goalNode',
     },
   ];
   
@@ -37,10 +41,19 @@ const initialEdges = [
         id: '1-2',
         source: '1',
         target: '2',
-        label: 'to the',
         type: 'step',
     }
 ];
+
+//node and edge types
+const nodeTypes = {
+    default: GoalNode,
+    goalNode: GoalNode,
+}
+
+const edgeTypes = {
+    default: StepEdge,
+}
 
 // WIP add node to center of the viewport
 function handleAddNode(nodes, setNodes){
@@ -48,7 +61,7 @@ function handleAddNode(nodes, setNodes){
         id: `node_${unusedId++}`,
         position: { x: 0, y: 0 },
         data: { label: 'new node' },
-        type: 'input'
+        type: 'goalNode'
     }])
 }
 
@@ -98,12 +111,13 @@ function Flow() {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
+                nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
             >
-            <Background />
             <Controls />
             </ReactFlow>
 
-            { selectedNodes.map((nd) => <div key={nd.id} class='editWindow'> {nd.data.label ?? ''}  </div>) }
+            { selectedNodes.map((nd) => <div key={nd.id} className='editWindow'> {nd.data.label ?? ''}  </div>) }
         </div>
 
         {/* bar for editing nodes */}

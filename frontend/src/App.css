@@ -25,3 +25,19 @@
   position: absolute;
   top: 20px;
 }
+
+/* custom reactflow css */
+.react-flow {
+  background: #1e2124;
+}
+
+.react-flow__node {
+  border-style: solid;
+  border-width: 0.5;
+  background-color: blueviolet;
+}
+
+.selectedNode {
+  border-color: aliceblue;
+  box-shadow: 0 0 0 0.5px white;
+}
