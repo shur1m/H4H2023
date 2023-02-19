@@ -68,8 +68,8 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
     const [ newPb, setNewPb ] = useState({
         id: uuidv4(),
         label: '',
-        completed: 0,
-        total: 1,
+        completed: '',
+        total: '',
     })
 
     if (node === undefined)
@@ -84,22 +84,23 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
              {isEditable ?
                 <form>
                     <p><input name="label" value={node.data.label} placeholder="Title" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}/></p>
-                    <p><textarea name="description" value={node.data.description} cols="30" rows="10" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}></textarea></p>
+                    <p><textarea name="description" placeholder='Description' value={node.data.description} cols="30" rows="4" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}></textarea></p>
                     
                     {/* adding progress bars */}
                     <p><input value={newPb.label} placeholder='Task Name' onChange={(e) => setNewPb({...newPb, label: e.target.value })}/></p>
                     <p><input value={newPb.completed} placeholder='# of Completed Tasks' onChange={(e) => setNewPb({...newPb, completed: e.target.value })}/></p>
                     <p><input value={newPb.total} placeholder='# of Tasks' onChange={(e) => setNewPb({...newPb, total: e.target.value })}/></p>
-
-                    <p><input value={imageLink} placeholder='image link' onChange={(e) => setImageLink(e.target.value)} /></p>
-                    <p><button onClick={(e) => {e.preventDefault(); setNodes([ ...(nodes.filter((n) => n.id !== node.id)), {...node, imageLink: imageLink}])} }> Add Picture </button></p>
-
                     <button onClick={(e) => {
                         e.preventDefault();
                         setNewPb({ ...newPb, id: uuidv4() });
                         handleAddProgressBar(newPb, node, nodes, setNodes)}}>
                             Add Task
                     </button>
+
+                    <p><input value={imageLink} placeholder='image link' onChange={(e) => setImageLink(e.target.value)} /></p>
+
+                    <p><button onClick={(e) => {e.preventDefault(); setNodes([ ...(nodes.filter((n) => n.id !== node.id)), {...node, imageLink: imageLink}])} }> Add Picture </button></p>
+                    
                 </form> 
                 
                 :
