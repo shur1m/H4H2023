@@ -1,6 +1,7 @@
 :root {
   --secondary-color: blue;
   --progress-bar-radius: 14px;
+  --background-color: white;
 }
 
 .App {
@@ -14,10 +15,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: chartreuse;
+  background-color: var(--background-color);
   position: absolute;
   top: 80px;
   right: 40px;
+  border-radius: 10px;
 
 }
 .nodeEditBar {
@@ -27,7 +29,7 @@
   align-items: flex-end;
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
 }
 
 .editWindow {

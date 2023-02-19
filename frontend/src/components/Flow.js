@@ -13,6 +13,7 @@ import {DocumentEditBar, DocumentEditButton, DocumentEditWindow} from './Documen
 import GoalNode from './customNodes/GoalNode';
 
 import {getGraph,saveGraph} from '../actions/graph';
+import AddIcon from '@mui/icons-material/Add';
 
 
 //WIP should be fetched from the backend
@@ -185,8 +186,8 @@ function Flow(props) {
         {/* panel for editing flow chart */}
         <div className='editPanel'>
             <DocumentEditBar>
-                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
-                <DocumentEditButton label='save project' onClick={()=> saveGraph(docTitle,nodes,edges)}/>
+                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}>  <AddIcon/> </DocumentEditButton>
+                <DocumentEditButton label='save project' onClick={()=> saveGraph(docTitle,nodes,edges)}>   </DocumentEditButton> 
                 <DocumentEditButton label='import image'/>
                 <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
                 <DocumentEditButton label='delete' onClick={() => handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges)}/>

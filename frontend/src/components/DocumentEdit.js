@@ -12,11 +12,11 @@ function DocumentEditBar({children}) {
 }
 
 //buttons within the menu
-function DocumentEditButton({onClick, label}) {
+function DocumentEditButton({onClick, children}) {
     return (
-        <button onClick= { onClick } >
-            { label }
-        </button>
+        <div onClick= { onClick } >
+            {children}
+        </div>
     )
 }
 
