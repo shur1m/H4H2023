@@ -2,23 +2,15 @@ import { slide as Menu } from 'react-burger-menu';
 import './Sidebar.css';
 
 
-function Sidebar() {
-    return (
-        <Menu>
-        <a className="menu-item" href="/">
-          Home
-        </a>
-        <a className="menu-item" href="/salads">
-          Salads
-        </a>
-        <a className="menu-item" href="/pizzas">
-          Pizzas
-        </a>
-        <a className="menu-item" href="/desserts">
-          Desserts
-        </a>
-      </Menu>
-    )
+function Sidebar(props) {
+  let directory = props.directory;
+  const setDocTitle=props.setDocTitle;
+  return (
+    <Menu>
+      {directory.map(title => (<a className="menu-item" key={title} onClick={()=>setDocTitle(title)}>{title}</a>)) }
+    </Menu>
+    
+  )
 }
 
 

@@ -14,11 +14,9 @@ function App() {
     getDirectory().then(res=>setDirectory(res));//gets the directory
   }, [docTitle])
   return (
-    
-
     <div style={{height:"100vh"}} id="outer-container">
       <Navbar/>
-      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+      <Sidebar setDocTitle={setDocTitle} directory={directory} />
       <div style={{height: '100%'}} id="page-wrap">
         <FlowWithProvider docTitle={docTitle}/>
       </div>
