@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 const cors =require("cors");
 const app = express();
 
@@ -9,6 +10,7 @@ const users =require("./routes/users");
 const port = process.env.PORT || 8080;
 const bodyParser =require('body-parser');
 
+
 app.use(bodyParser.json());
 app.use(cors({
     origin: "*",
@@ -17,6 +19,7 @@ app.use(cors({
 
 app.use('/graphs', graphs);
 app.use('/users', users);
+
 
 app.get("/", (req, res) => {
     res.send("Testing JavaScript!");
