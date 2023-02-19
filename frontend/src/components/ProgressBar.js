@@ -1,12 +1,33 @@
 function handleDeleteProgressBar(pb, node, nodes, setNodes) {
     let newNodes = nodes.filter((n) => n.id !== node.id);
-    let newProgressBars = node.data.progressBars.filter((p) => p.label !== pb.label);
+    let newProgressBars = node.data.progressBars.filter((p) => p.id !== pb.id);
     newNodes = [...newNodes,
         {
             ...node,
             data: {
                 ...node.data,
                 progressBars: newProgressBars,
+            }
+        }
+    ]
+    setNodes(newNodes);
+}
+
+function handleIncrementCompleted(pb, node, nodes, setNodes){
+    let newNodes = nodes.filter((n) => n.id !== node.id);
+    let newProgressBars = node.data.progressBars.filter((p) => p.id !== pb.id);
+
+    pb = {
+        ...pb,
+        completed: pb.completed < pb.total ? pb.completed + 1 : pb.completed, 
+    }
+
+    newNodes = [...newNodes,
+        {
+            ...node,
+            data: {
+                ...node.data,
+                progressBars: [...newProgressBars, pb],
             }
         }
     ]
@@ -23,6 +44,7 @@ function ProgressBar({ node, nodes, setNodes, pb, isEditable}) {
                     <div className="progressBar foreground" style={{width: percent + '%'}}></div>
                 </div>
                 <div style={{padding: '10px'}}> {pb.completed}/{pb.total}</div>
+                {!isEditable ? <button onClick={() => handleIncrementCompleted(pb, node, nodes, setNodes)}> + </button> : null }
                 {isEditable ? <button onClick={() => handleDeleteProgressBar(pb, node, nodes, setNodes)}>delete</button> : null}
             </div>
         </>

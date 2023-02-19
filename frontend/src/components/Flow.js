@@ -72,7 +72,11 @@ function handleAddNode(nodes, setNodes){
     setNodes([...nodes, {
         id: `node_${unusedId++}`,
         position: { x: 0, y: 0 },
-        data: { label: 'new node' },
+        data: {
+            label: 'new node',
+            description: '',
+            progressBars: [],
+        },
         type: 'goalNode'
     }])
 }

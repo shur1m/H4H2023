@@ -1,6 +1,6 @@
-import Textarea from 'rc-textarea';
 import { useState } from 'react';
 import ProgressBar from './ProgressBar';
+import { v4 as uuidv4 } from 'uuid';
 
 // component for editing the document
 function DocumentEditBar({children}) {
@@ -38,9 +38,8 @@ function handleNodeDataChange(event, originalNode, nodes, setNodes){
 }
 
 function handleAddProgressBar(pb, node, nodes, setNodes) {
-    console.log('hdfss')
-    pb.total = parseFloat(pb.total)
-    pb.completed = parseFloat(pb.completed)
+    pb.total = parseFloat(pb.total);
+    pb.completed = parseFloat(pb.completed);
     if (pb.total == NaN || pb.completed == NaN)
         return;
     
@@ -62,8 +61,11 @@ function handleAddProgressBar(pb, node, nodes, setNodes) {
 function DocumentEditWindow({ nodeId, nodes, setNodes}){
     let node = nodes.filter((nd) => nd.id == nodeId)[0];
     const [isEditable, setIsEditable] = useState(false);
+    const [imageLink, setImageLink] = useState('');
 
+    console.log(uuidv4());
     const [ newPb, setNewPb ] = useState({
+        id: uuidv4(),
         label: '',
         completed: 0,
         total: 1,
@@ -75,6 +77,8 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
     //contains the name, description, and progress of the goal
     return (
         <div key={node.id} className='editWindow'>
+            { node.imageLink === undefined ? null : <img src={node.imageLink} alt={node.imageLink} /> }
+
             <button className='editWindowButton' onClick={() => setIsEditable(!isEditable)}> {isEditable ? 'Done' : 'Edit'} </button>
              {isEditable ?
                 <form>
@@ -85,7 +89,16 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
                     <p><input value={newPb.label} placeholder='Task Name' onChange={(e) => setNewPb({...newPb, label: e.target.value })}/></p>
                     <p><input value={newPb.completed} placeholder='# of Completed Tasks' onChange={(e) => setNewPb({...newPb, completed: e.target.value })}/></p>
                     <p><input value={newPb.total} placeholder='# of Tasks' onChange={(e) => setNewPb({...newPb, total: e.target.value })}/></p>
-                    <button onClick={(e) => {e.preventDefault(); handleAddProgressBar(newPb, node, nodes, setNodes)}}> Add Task </button>
+
+                    <p><input value={imageLink} placeholder='image link' onChange={(e) => setImageLink(e.target.value)} /></p>
+                    <p><button onClick={(e) => {e.preventDefault(); setNodes([ ...(nodes.filter((n) => n.id !== node.id)), {...node, imageLink: imageLink}])} }> Add Picture </button></p>
+
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        setNewPb({ ...newPb, id: uuidv4() });
+                        handleAddProgressBar(newPb, node, nodes, setNodes)}}>
+                            Add Task
+                    </button>
                 </form> 
                 
                 :
