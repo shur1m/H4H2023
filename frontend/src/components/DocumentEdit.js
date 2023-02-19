@@ -16,4 +16,9 @@ function DocumentEditButton({onClick, label}) {
     )
 }
 
-export { DocumentEditBar, DocumentEditButton };
+function DocumentEditWindow({ node }){
+    //contains the name, description, and progress of the goal
+    return (<div key={node.id} className='editWindow'> {node.data.label ?? ''}  </div>)
+}
+
+export { DocumentEditBar, DocumentEditButton, DocumentEditWindow };

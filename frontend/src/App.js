@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import FlowWithProvider from './components/FlowWithProvider';
 import 'reactflow/dist/style.css';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
+import Sidebar from './components/navigation/Sidebar';
+import Navbar from './components/navigation/Navbar';
 import './App.css';
 
 function App() {

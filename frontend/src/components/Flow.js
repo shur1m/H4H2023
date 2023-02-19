@@ -8,8 +8,8 @@ import ReactFlow, {
     StepEdge
 } from 'reactflow';
 
-import { useState, useCallback } from 'react';
-import {DocumentEditBar, DocumentEditButton} from './DocumentEdit';
+import { useState, useCallback, useEffect } from 'react';
+import {DocumentEditBar, DocumentEditButton, DocumentEditWindow} from './DocumentEdit';
 import GoalNode from './customNodes/GoalNode';
 
 
@@ -32,6 +32,21 @@ const initialNodes = [
         id: '3',
         position: {x: 0, y: 0},
         data: {label: "I'm a genius!"},
+        type: 'goalNode',
+    },
+  ];
+
+  const newNodes = [
+    {
+        id: '1',
+        position: { x: 200, y: 200 },
+        data: { label: 'arnav', description: 'some description'},
+        type: 'goalNode',
+    },
+    {
+        id: '2',
+        position: { x: 100, y: 100 },
+        data: { label: 'World' },
         type: 'goalNode',
     },
   ];
@@ -119,7 +134,7 @@ function Flow() {
 
         </div>
 
-        {/* bar for editing nodes */}
+        {/* panel for editing flow chart */}
         <div className='editPanel'>
             <DocumentEditBar>
                 <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
@@ -127,10 +142,8 @@ function Flow() {
                 <DocumentEditButton label='import image'/>
                 <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
             </DocumentEditBar>
-            { selectedNodes.map((nd) => <div key={nd.id} className='editWindow'> {nd.data.label ?? ''}  </div>) }
+            { selectedNodes.map((nd) => <DocumentEditWindow node = {nd}/>) }
         </div>
-
-        {/* edit node windows */}
     </>
     );
 }
