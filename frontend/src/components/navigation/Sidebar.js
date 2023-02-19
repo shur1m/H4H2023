@@ -1,6 +1,7 @@
 import { slide as Menu } from 'react-burger-menu';
 import {useState} from  'react';
 import {newGraph,delGraph} from '../../actions/graph';
+import {shareGraph} from '../../actions/users';
 import './Sidebar.css';
 
 
@@ -11,6 +12,8 @@ function Sidebar(props) {
     event.preventDefault();
     console.log(newDocumentTitle);
     newGraph(newDocumentTitle);
+    console.log(props.user);
+    shareGraph(newDocumentTitle,props.user)
     setDocTitle(newDocumentTitle);
     props.setDirectory([...directory,newDocumentTitle])
     setNewDocumentTitle("");
