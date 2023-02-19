@@ -52,8 +52,8 @@ function App() {
           console.log(result);
           const uid =result.user.uid;
           setPhoto(result.user.photoURL);
-          setUser(uid);
-          newUser(uid);
+          
+          newUser(uid).then(()=>setUser(uid));
         })
   }
 
