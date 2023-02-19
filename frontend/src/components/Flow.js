@@ -18,10 +18,9 @@ import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { v4 as uuidv4 } from 'uuid';
 
 //WIP should be fetched from the backend
-let unusedId = 0;
 const initialNodes = [
     {
         id: '1',
@@ -75,7 +74,7 @@ const edgeTypes = {
 // WIP add node to center of the viewport
 function handleAddNode(nodes, setNodes){
     setNodes([...nodes, {
-        id: `node_${unusedId++}`,
+        id: `node_${uuidv4()}`,
         position: { x: 0, y: 0 },
         data: {
             label: 'new node',
