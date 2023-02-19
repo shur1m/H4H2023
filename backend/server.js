@@ -10,7 +10,11 @@ const bodyParser = require('body-parser');
 const graphs = require("./routes/growthgraph");
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    credentials: true
+}));
+
 app.use('/graphs', graphs);
 
 app.get("/", (req, res) => {
