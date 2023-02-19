@@ -1,56 +1,40 @@
-:root {
-  --secondary-color: blue;
-}
-
 .App {
   text-align: center;
   height: 100%;
   width: 100%;
 }
 
-.editPanel {
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  background-color: chartreuse;
-  position: absolute;
-  top: 30px;
-  right: 40px;
-
-}
-.nodeEditBar {
-  display:flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: var(--secondary-color);
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.editWindow {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: flex-start;
-  padding: 10px;
-  margin: 10px;
-  background-color: coral;
+.App-link {
+  color: #61dafb;
 }
 
-/* custom reactflow css */
-.react-flow {
-  background: #1e2124;
-}
-
-
-.goalNode {
-  border-style: solid;
-  border-color: aquamarine;
-  background-color: white;
-}
-
-.goalNode.selected {
-  border-color: blue;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
