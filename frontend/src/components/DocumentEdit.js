@@ -23,8 +23,7 @@ function DocumentEditButton({onClick, children}) {
 //handlers for documenteditwindow
 function handleNodeDataChange(event, originalNode, nodes, setNodes){
     let newNodes = nodes.filter((nd) => nd.id !== originalNode.id);
-    console.log(event.target.value)
-    console.log(originalNode.data)
+    
     newNodes = [...newNodes, {
         ...originalNode,
         data: {
@@ -33,7 +32,7 @@ function handleNodeDataChange(event, originalNode, nodes, setNodes){
         }
     }]
 
-    console.log(newNodes);
+    
     setNodes(newNodes);
 }
 
@@ -55,7 +54,7 @@ function handleAddProgressBar(pb, node, nodes, setNodes) {
         }
     ]
     setNodes(newNodes);
-    console.log(newNodes);
+    
 }
 
 function DocumentEditWindow({ nodeId, nodes, setNodes}){
@@ -63,7 +62,7 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
     const [isEditable, setIsEditable] = useState(false);
     const [imageLink, setImageLink] = useState('');
 
-    console.log(uuidv4());
+    
     const [ newPb, setNewPb ] = useState({
         id: uuidv4(),
         label: '',
