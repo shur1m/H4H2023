@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    direction: row;
+    justify-content: center;
+	background-color: white;
+    width: 100vw;
+    height: 20px;
+    font-size: 18px;
+    padding: 12px 26px;
+    color: black;
+}
+
+.logo {
+    position: relative;
+    padding: 0px 5px;
+    bottom: 5px;
+    width: auto;
+    height: 30px;
+    max-width: 50px;
+}
