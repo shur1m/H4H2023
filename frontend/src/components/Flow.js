@@ -28,6 +28,7 @@ const initialNodes = [
         position: { x: 200, y: 200 },
         data: {
             label: 'Hello',
+            iconName: 'code',
             description: 'some description',
             progressBars: [
                 {
@@ -58,7 +59,6 @@ const initialEdges = [
         id: '1-2',
         source: '1',
         target: '2',
-        type: 'step',
     }
 ];
 

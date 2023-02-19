@@ -23,6 +23,7 @@
   border-radius: 10px;
 
 }
+
 .nodeEditBar {
   display:flex;
   flex-direction: row;
@@ -127,6 +128,7 @@
   font-size: x-large;
   text-align: center;
 }
+
 .goalNode:hover{
   border-radius: x-large;
 }
@@ -134,6 +136,11 @@
 .goalNode.selected {
   border-color: #77C37E;
 }
+
+.nodeLabel {
+  color: #77C37E;
+}
+
 .login-with-google-btn {
        
   position: absolute;
