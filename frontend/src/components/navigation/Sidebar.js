@@ -3,7 +3,8 @@ import {useState} from  'react';
 import {newGraph,delGraph} from '../../actions/graph';
 import {shareGraph} from '../../actions/users';
 import './Sidebar.css';
-
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 function Sidebar(props) {
   let directory = props.directory;
@@ -28,13 +29,13 @@ function Sidebar(props) {
   const [newDocumentTitle,setNewDocumentTitle] =useState("");
   return (
     <Menu>
-      {directory.map(title => (<div className="directory"><a className="menu-item" key={title} onClick={()=>setDocTitle(title)}>{title}</a><button className="delete-button" onClick={()=>handleDelete(title)}>X</button></div>)) }
+      {directory.map(title => (<div className="directory"><a className="menu-item" key={title} onClick={()=>setDocTitle(title)}>{title}</a><div className="delete-button" onClick={()=>handleDelete(title)}> <RemoveCircleIcon/>  </div></div>)) }
 
-      {butOrText?<button onClick={()=>setBut(false)}> New Document</button>:
-      (<form>
+      {butOrText?<div onClick={()=>setBut(false)}> <NoteAddIcon/> </div>:
+      (<div style={{ paddingTop:'10px', display:'flex', flexDirection:'row' }}>
         <input value={newDocumentTitle} onChange={(e)=>setNewDocumentTitle(e.target.value)} type="text"></input>
-        <button onClick={(event) => onFormSubmit(event) }>Create Document</button>
-      </form>)
+        <div style={{paddingLeft: '10px'}} onClick={(event) => onFormSubmit(event) }><NoteAddIcon/></div>
+      </div>)
       }
 
     </Menu>

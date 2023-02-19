@@ -105,8 +105,8 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
                 :
 
                 <>
-                    <div> {node.data.label ?? ''} </div>
-                    <div> {node.data.description ?? ''} </div>
+                    <div className='nodeTitle'> {node.data.label ?? ''} </div>
+                    <div className='nodeDescription'> {node.data.description ?? ''} </div>
 
                     {/* progress bars */}
                 </>}
