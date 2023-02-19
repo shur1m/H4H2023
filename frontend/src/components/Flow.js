@@ -103,10 +103,12 @@ function Flow(props) {
     },[]);
 
     useEffect(() => {
-        getGraph(docTitle).then(res=>{
-            setNodes(res.nodes);
-            setEdges(res.edges); 
-        });
+        if (docTitle !== ''){
+            getGraph(docTitle).then(res=>{
+                setNodes(res.nodes);
+                setEdges(res.edges); 
+            });
+        }
     }, [docTitle]);
     
 

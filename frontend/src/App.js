@@ -8,7 +8,7 @@ import {useEffect,useState } from 'react'
 import {getDirectory} from './actions/graph';
 
 function App() {
-  const [docTitle,setDocTitle] =useState("newGraph");
+  const [docTitle,setDocTitle] =useState('');
   const [directory,setDirectory]=useState([]);
   useEffect(() => {
     getDirectory().then(res=>setDirectory(res));//gets the directory
