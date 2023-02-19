@@ -28,7 +28,7 @@ function Sidebar(props) {
   const [newDocumentTitle,setNewDocumentTitle] =useState("");
   return (
     <Menu>
-      {directory.map(title => (<a className="menu-item" key={title} onClick={()=>setDocTitle(title)}>{title}<button className="delete-button" onClick={()=>handleDelete(title)}>X</button></a>)) }
+      {directory.map(title => (<div className="directory"><a className="menu-item" key={title} onClick={()=>setDocTitle(title)}>{title}</a><button className="delete-button" onClick={()=>handleDelete(title)}>X</button></div>)) }
 
       {butOrText?<button onClick={()=>setBut(false)}> New Document</button>:
       (<form>

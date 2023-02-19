@@ -66,7 +66,6 @@
  /* Individual item */
   .bm-item {
     display: inline-block;
-  
     color: #d1d1d1;
     margin-bottom: 10px;
     text-align: left;
@@ -81,4 +80,17 @@
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .directory{
+    display: inline-block;
+    justify-content: space-between;
+    
+  }
+  .delete-button{
+    color:red;
+    flex-basis: 25%;
+    text-align: center;
+    float: right;
+    
   }
