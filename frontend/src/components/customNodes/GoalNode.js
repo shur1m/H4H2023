@@ -12,7 +12,7 @@ export default memo(({data, isConnectable, selected}) => {
             isConnectable={isConnectable}
             />
 
-            <div className={nodeClassname} onClick={() => console.log(selected)}>
+            <div className={nodeClassname}>
                 { data.label }
             </div>
 
