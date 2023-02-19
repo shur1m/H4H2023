@@ -117,16 +117,18 @@ function Flow() {
             <Controls />
             </ReactFlow>
 
-            { selectedNodes.map((nd) => <div key={nd.id} className='editWindow'> {nd.data.label ?? ''}  </div>) }
         </div>
 
         {/* bar for editing nodes */}
-        <DocumentEditBar>
-            <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
-            <DocumentEditButton label='save project'/>
-            <DocumentEditButton label='import image'/>
-            <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
-        </DocumentEditBar>
+        <div className='editPanel'>
+            <DocumentEditBar>
+                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
+                <DocumentEditButton label='save project'/>
+                <DocumentEditButton label='import image'/>
+                <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
+            </DocumentEditBar>
+            { selectedNodes.map((nd) => <div key={nd.id} className='editWindow'> {nd.data.label ?? ''}  </div>) }
+        </div>
 
         {/* edit node windows */}
     </>

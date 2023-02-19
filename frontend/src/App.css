@@ -8,22 +8,35 @@
   width: 100%;
 }
 
-.nodeEditBar {
-  display:flex;
+.editPanel {
+  display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: chartreuse;
   position: absolute;
   top: 30px;
   right: 40px;
+
+}
+.nodeEditBar {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
   padding: 10px;
   border-radius: 10px;
   background-color: var(--secondary-color);
 }
 
 .editWindow {
-  position: absolute;
-  top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 10px;
+  margin: 10px;
+  background-color: coral;
 }
 
 /* custom reactflow css */
@@ -31,13 +44,13 @@
   background: #1e2124;
 }
 
-.react-flow__node {
+
+.goalNode {
   border-style: solid;
-  border-width: 0.5;
-  background-color: blueviolet;
+  border-color: aquamarine;
+  background-color: white;
 }
 
-.selectedNode {
-  border-color: aliceblue;
-  box-shadow: 0 0 0 0.5px white;
+.goalNode.selected {
+  border-color: blue;
 }
