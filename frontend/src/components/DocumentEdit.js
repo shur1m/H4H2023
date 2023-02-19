@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import { v4 as uuidv4 } from 'uuid';
+import EditIcon from '@mui/icons-material/Edit';
+import EditOffIcon from '@mui/icons-material/EditOff';
 
 // component for editing the document
 function DocumentEditBar({children}) {
@@ -12,11 +14,11 @@ function DocumentEditBar({children}) {
 }
 
 //buttons within the menu
-function DocumentEditButton({onClick, label}) {
+function DocumentEditButton({onClick, label, children}) {
     return (
-        <button onClick= { onClick } >
-            { label }
-        </button>
+        <div class='documentEditButton' onClick= { onClick } >
+            { children }
+        </div>
     )
 }
 
@@ -78,7 +80,7 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
         <div key={node.id} className='editWindow'>
             { node.imageLink === undefined ? null : <img src={node.imageLink} alt={node.imageLink} /> }
 
-            <button className='editWindowButton' onClick={() => setIsEditable(!isEditable)}> {isEditable ? 'Done' : 'Edit'} </button>
+            <div className='editWindowButton' onClick={() => setIsEditable(!isEditable)}> {isEditable ? <EditOffIcon/> : <EditIcon/>} </div>
              {isEditable ?
                 <form>
                     <p><input name="label" value={node.data.label} placeholder="Title" onChange={(e) => handleNodeDataChange(e, node, nodes, setNodes)}/></p>

@@ -14,6 +14,11 @@ import GoalNode from './customNodes/GoalNode';
 
 import {getGraph,saveGraph} from '../actions/graph';
 
+import AddIcon from '@mui/icons-material/Add';
+import SaveIcon from '@mui/icons-material/Save';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 //WIP should be fetched from the backend
 let unusedId = 0;
@@ -185,11 +190,10 @@ function Flow(props) {
         {/* panel for editing flow chart */}
         <div className='editPanel'>
             <DocumentEditBar>
-                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
-                <DocumentEditButton label='save project' onClick={()=> saveGraph(docTitle,nodes,edges)}/>
-                <DocumentEditButton label='import image'/>
-                <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
-                <DocumentEditButton label='delete' onClick={() => handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges)}/>
+                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}><AddIcon/></DocumentEditButton>
+                <DocumentEditButton label='save project' onClick={()=> saveGraph(docTitle,nodes,edges)}> <SaveIcon/> </DocumentEditButton>
+                <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}><RemoveRedEyeIcon/></DocumentEditButton>
+                <DocumentEditButton label='delete' onClick={() => handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges)}><DeleteIcon/></DocumentEditButton>
             </DocumentEditBar>
             { selectedNodes.map((nd) => <DocumentEditWindow key={nd.id} nodeId = {nd.id} nodes = {nodes} setNodes = {setNodes}/>) }
         </div>

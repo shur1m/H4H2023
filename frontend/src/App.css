@@ -1,5 +1,6 @@
 :root {
   --secondary-color: blue;
+  --background-color: white;
   --progress-bar-radius: 14px;
 }
 
@@ -14,10 +15,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: chartreuse;
+  background-color: var(--background-color);
   position: absolute;
   top: 80px;
   right: 40px;
+  width: 300px;
+  border-radius: 10px;
 
 }
 .nodeEditBar {
@@ -27,7 +30,7 @@
   align-items: flex-end;
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
 }
 
 .editWindow {
@@ -38,13 +41,16 @@
   align-items: flex-start;
   padding: 10px;
   margin: 10px;
-  background-color: coral;
+  background-color: var(--background-color);
 }
 
 .editWindowButton {
-  right: 10px;
   align-self: flex-end;
-  width: 20%;
+  right: 5px;
+}
+
+.documentEditButton {
+  padding: 0px 5px;
 }
 
 .progressBar {
