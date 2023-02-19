@@ -12,6 +12,8 @@ import { useState, useCallback, useEffect } from 'react';
 import {DocumentEditBar, DocumentEditButton, DocumentEditWindow} from './DocumentEdit';
 import GoalNode from './customNodes/GoalNode';
 
+import {getDirectory,getGraph} from '../actions/graph';
+
 
 //WIP should be fetched from the backend
 let unusedId = 0;
@@ -36,21 +38,6 @@ const initialNodes = [
     },
   ];
 
-  const newNodes = [
-    {
-        id: '1',
-        position: { x: 200, y: 200 },
-        data: { label: 'arnav', description: 'some description'},
-        type: 'goalNode',
-    },
-    {
-        id: '2',
-        position: { x: 100, y: 100 },
-        data: { label: 'World' },
-        type: 'goalNode',
-    },
-  ];
-  
 const initialEdges = [
     {
         id: '1-2',
@@ -98,8 +85,9 @@ function DisplayWindowOnSelect(setSelectedNodes) {
     });
 }
 
-function Flow() {
+function Flow(props) {
     // setting up reactflow
+    let docTitle = props.docTitle;
     const reactFlowInstance = useReactFlow();
     
     // state for edges and nodes
@@ -113,6 +101,14 @@ function Flow() {
     const onConnect = useCallback((params) => {
         setEdges((eds) => addEdge(params, eds))
     },[]);
+
+    useEffect(() => {
+        getGraph(docTitle).then(res=>{
+            setNodes(res.nodes);
+            setEdges(res.edges); 
+        });
+    }, [docTitle]);
+    
 
     // display edit windows if node is selected
     DisplayWindowOnSelect(setSelectedNodes);
