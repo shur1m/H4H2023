@@ -1,0 +1,19 @@
+.navbar{
+	display: inline-block;
+}
+
+.left-navbar {
+	background-color: #1e1f22;
+    display: inline-block;
+    width: 100vw;
+
+    font-size: 18px;
+    padding: 18px 26px;
+    color: rgb(255, 255, 255);
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    max-width: 50px;
+}
