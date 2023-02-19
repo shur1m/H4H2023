@@ -138,7 +138,7 @@ function Flow(props) {
                 <DocumentEditButton label='import image'/>
                 <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
             </DocumentEditBar>
-            { selectedNodes.map((nd) => <DocumentEditWindow node = {nd}/>) }
+            { selectedNodes.map((nd) => <DocumentEditWindow key={nd.id} node = {nd}/>) }
         </div>
     </>
     );

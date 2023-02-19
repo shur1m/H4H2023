@@ -20,7 +20,7 @@ function App() {
       <Navbar/>
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       <div style={{height: '100%'}} id="page-wrap">
-        <FlowWithProvider/>
+        <FlowWithProvider docTitle={docTitle}/>
       </div>
     </div>
   );
