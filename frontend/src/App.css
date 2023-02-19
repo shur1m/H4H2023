@@ -48,10 +48,17 @@
   align-self: flex-end;
   right: 5px;
 }
+.editWindowButton:hover {
+  color:#757575;
+}
 
 .documentEditButton {
   padding: 0px 5px;
 }
+.documentEditButton:hover {
+  color:#757575;
+}
+
 
 .progressBar {
   height: 24px;
@@ -96,7 +103,7 @@
   font-size: x-large;
 }
 .goalNode:hover{
-  border-width: thick;
+  border-radius: x-large;
 }
 
 .goalNode.selected {
