@@ -11,12 +11,13 @@ function App() {
   const [docTitle,setDocTitle] =useState('');
   const [directory,setDirectory]=useState([]);
   useEffect(() => {
+    console.log("Title Change");
     getDirectory().then(res=>setDirectory(res));//gets the directory
-  }, [docTitle])
+  }, [])
   return (
     <div style={{height:"100vh"}} id="outer-container">
       <Navbar/>
-      <Sidebar setDocTitle={setDocTitle} directory={directory} />
+      <Sidebar setDirectory={setDirectory}setDocTitle={setDocTitle} directory={directory} />
       <div style={{height: '100%'}} id="page-wrap">
         <FlowWithProvider docTitle={docTitle}/>
       </div>
