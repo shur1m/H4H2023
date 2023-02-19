@@ -1,9 +1,9 @@
-import './App.css';
 import logo from './logo.svg';
 import FlowWithProvider from './components/FlowWithProvider';
 import 'reactflow/dist/style.css';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
+import './App.css';
 
 function App() {
 

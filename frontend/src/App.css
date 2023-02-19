@@ -1,12 +1,56 @@
+:root {
+  --secondary-color: blue;
+}
+
 .App {
   text-align: center;
   height: 100%;
   width: 100%;
 }
 
-.nodeEditBar {
-  background-color: gray;
+.editPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: chartreuse;
   position: absolute;
-  top: 50px;
-  right: 70px;
+  top: 30px;
+  right: 40px;
+
+}
+.nodeEditBar {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+}
+
+.editWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 10px;
+  margin: 10px;
+  background-color: coral;
+}
+
+/* custom reactflow css */
+.react-flow {
+  background: #1e2124;
+}
+
+
+.goalNode {
+  border-style: solid;
+  border-color: aquamarine;
+  background-color: white;
+}
+
+.goalNode.selected {
+  border-color: blue;
 }
