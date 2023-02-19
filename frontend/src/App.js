@@ -17,7 +17,7 @@ import { initializeApp } from "firebase/app";
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
   
-    apiKey: process.env.REACT_APP_apiKey,
+    apiKey: "AIzaSyC7jHzGWIis-nouei4iFBmSu2cVDZVXr2M",
     authDomain: "test-app2-177a1.firebaseapp.com",
     databaseURL:"https://test-app2-177a1-default-rtdb.firebaseio.com/",
     projectId: "test-app2-177a1",
@@ -68,7 +68,7 @@ function App() {
   }, [user])
   return (
     <div style={{height:"100vh"}} id="outer-container">
-      <Navbar user={user} setUser={setUser} />
+      <Navbar user={user} setUser={setUser} docTitle={docTitle}/>
       <Sidebar user={user} setDirectory={setDirectory} setDocTitle={setDocTitle} directory={directory} />
       <div style={{height: '100%'}} id="page-wrap">
         <FlowWithProvider docTitle={docTitle}/>
