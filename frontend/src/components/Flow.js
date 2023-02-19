@@ -8,8 +8,8 @@ import ReactFlow, {
     StepEdge
 } from 'reactflow';
 
-import { useState, useCallback,useEffect } from 'react';
-import {DocumentEditBar, DocumentEditButton} from './DocumentEdit';
+import { useState, useCallback, useEffect } from 'react';
+import {DocumentEditBar, DocumentEditButton, DocumentEditWindow} from './DocumentEdit';
 import GoalNode from './customNodes/GoalNode';
 
 import {getDirectory,getGraph} from '../actions/graph';
@@ -37,26 +37,7 @@ const initialNodes = [
         type: 'goalNode',
     },
   ];
-  const newNodes = [
-    {
-        id: '1',
-        position: { x: 200, y: 200 },
-        data: { label: 'Hi', description: 'some'},
-        type: 'goalNode',
-    },
-    {
-        id: '2',
-        position: { x: 100, y: 100 },
-        data: { label: 'World' },
-        type: 'goalNode',
-    },
-    {
-        id: '3',
-        position: {x: 0, y: 0},
-        data: {label: "I'm stupid!"},
-        type: 'goalNode',
-    },
-  ];
+
 const initialEdges = [
     {
         id: '1-2',
@@ -147,18 +128,18 @@ function Flow(props) {
             <Controls />
             </ReactFlow>
 
-            { selectedNodes.map((nd) => <div key={nd.id} className='editWindow'> {nd.data.label ?? ''}  </div>) }
         </div>
 
-        {/* bar for editing nodes */}
-        <DocumentEditBar>
-            <DocumentEditButton label='add node' onClick={() => {console.log(nodes);handleAddNode(nodes, setNodes)}}/>
-            <DocumentEditButton label='save project'/>
-            <DocumentEditButton label='import image'/>
-            <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
-        </DocumentEditBar>
-
-        {/* edit node windows */}
+        {/* panel for editing flow chart */}
+        <div className='editPanel'>
+            <DocumentEditBar>
+                <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
+                <DocumentEditButton label='save project'/>
+                <DocumentEditButton label='import image'/>
+                <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
+            </DocumentEditBar>
+            { selectedNodes.map((nd) => <DocumentEditWindow node = {nd}/>) }
+        </div>
     </>
     );
 }

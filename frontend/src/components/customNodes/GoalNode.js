@@ -3,11 +3,11 @@ import { Handle, Position } from 'reactflow';
 
 export default memo(({data, isConnectable, selected}) => {
     let nodeClassname = 'goalNode';
-    if (selected) nodeClassname += ' selectedNode';
+    if (selected) nodeClassname += ' selected';
     return (
         <>
             <Handle
-            type="target"
+            type="source"
             position={Position.Bottom}
             isConnectable={isConnectable}
             />
@@ -17,7 +17,7 @@ export default memo(({data, isConnectable, selected}) => {
             </div>
 
             <Handle
-            type="source"
+            type="target"
             position={Position.Top}
             isConnectable={isConnectable}
             />
