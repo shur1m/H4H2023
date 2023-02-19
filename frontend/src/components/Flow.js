@@ -5,7 +5,7 @@ import ReactFlow, {
     addEdge,
     useReactFlow,
     useOnSelectionChange,
-    StepEdge
+    BezierEdge,
 } from 'reactflow';
 
 import { useState, useCallback, useEffect } from 'react';
@@ -69,7 +69,7 @@ const nodeTypes = {
 }
 
 const edgeTypes = {
-    default: StepEdge,
+    default: BezierEdge,
 }
 
 // WIP add node to center of the viewport

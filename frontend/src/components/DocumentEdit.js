@@ -78,7 +78,7 @@ function DocumentEditWindow({ nodeId, nodes, setNodes}){
     //contains the name, description, and progress of the goal
     return (
         <div key={node.id} className='editWindow'>
-            { node.imageLink === undefined ? null : <img src={node.imageLink} alt={node.imageLink} /> }
+            { node.imageLink === undefined ? null : <img className='nodeImage' src={node.imageLink} alt={node.imageLink} /> }
 
             <div className='editWindowButton' onClick={() => setIsEditable(!isEditable)}> {isEditable ? <EditOffIcon/> : <EditIcon/>} </div>
              {isEditable ?
