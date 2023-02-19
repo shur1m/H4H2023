@@ -12,7 +12,7 @@ import { useState, useCallback, useEffect } from 'react';
 import {DocumentEditBar, DocumentEditButton, DocumentEditWindow} from './DocumentEdit';
 import GoalNode from './customNodes/GoalNode';
 
-import {getDirectory,getGraph} from '../actions/graph';
+import {getGraph,saveGraph} from '../actions/graph';
 
 
 //WIP should be fetched from the backend
@@ -146,6 +146,8 @@ function Flow(props) {
     // default functions for flow chart
     const onNodesChange = useCallback( (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),[] );
     const onEdgesChange = useCallback( (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),[] );
+
+    
     const onConnect = useCallback((params) => {
         setEdges((eds) => addEdge(params, eds))
     },[]);
@@ -153,8 +155,8 @@ function Flow(props) {
     useEffect(() => {
         if (docTitle !== ''){
             getGraph(docTitle).then(res=>{
-                setNodes(res.nodes);
-                setEdges(res.edges); 
+                setNodes(res.nodes ?? []);
+                setEdges(res.edges ?? []); 
             });
         }
     }, [docTitle]);
@@ -184,7 +186,7 @@ function Flow(props) {
         <div className='editPanel'>
             <DocumentEditBar>
                 <DocumentEditButton label='add node' onClick={() => {handleAddNode(nodes, setNodes)}}/>
-                <DocumentEditButton label='save project'/>
+                <DocumentEditButton label='save project' onClick={()=> saveGraph(docTitle,nodes,edges)}/>
                 <DocumentEditButton label='import image'/>
                 <DocumentEditButton label='reset viewport' onClick={() => handleResetViewPort(reactFlowInstance)}/>
                 <DocumentEditButton label='delete' onClick={() => handleDeleteEdgesNodes(nodes, edges, setNodes, setEdges, selectedNodes, selectedEdges)}/>

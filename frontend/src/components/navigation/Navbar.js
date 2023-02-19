@@ -1,5 +1,7 @@
 import './Navbar.css';
+
 import logo from '../../assets/logo0.svg';
+
 
 
 const Navbar= ({docTitle}) =>{
