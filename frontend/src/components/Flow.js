@@ -22,45 +22,48 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { v4 as uuidv4 } from 'uuid';
 
 //WIP should be fetched from the backend
-const initialNodes = [
-    {
-        id: '1',
-        position: { x: 200, y: 200 },
-        data: {
-            label: 'Hello',
-            iconName: 'code',
-            description: 'some description',
-            progressBars: [
-                {
-                    completed: 3,
-                    total: 10,
-                    label: 'finish the ui'
-                }
-            ]
-        },
-        type: 'goalNode',
-    },
-    {
-        id: '2',
-        position: { x: 100, y: 100 },
-        data: { label: 'World' },
-        type: 'goalNode',
-    },
-    {
-        id: '3',
-        position: {x: 0, y: 0},
-        data: {label: "I'm a genius!"},
-        type: 'goalNode',
-    },
-  ];
+// const initialNodes = [
+//     {
+//         id: '1',
+//         position: { x: 200, y: 200 },
+//         data: {
+//             label: 'Hello',
+//             iconName: 'code',
+//             description: 'some description',
+//             progressBars: [
+//                 {
+//                     completed: 3,
+//                     total: 10,
+//                     label: 'finish the ui'
+//                 }
+//             ]
+//         },
+//         type: 'goalNode',
+//     },
+//     {
+//         id: '2',
+//         position: { x: 100, y: 100 },
+//         data: { label: 'World' },
+//         type: 'goalNode',
+//     },
+//     {
+//         id: '3',
+//         position: {x: 0, y: 0},
+//         data: {label: "I'm a genius!"},
+//         type: 'goalNode',
+//     },
+//   ];
 
-const initialEdges = [
-    {
-        id: '1-2',
-        source: '1',
-        target: '2',
-    }
-];
+// const initialEdges = [
+//     {
+//         id: '1-2',
+//         source: '1',
+//         target: '2',
+//     }
+// ];
+
+const initialNodes = []
+const initialEdges = []
 
 //node and edge types
 const nodeTypes = {
